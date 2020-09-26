@@ -7,86 +7,172 @@ public class ProblemB {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        Coordinates start = new Coordinates(scan.nextInt(), scan.nextInt());
-        Coordinates finish = new Coordinates(scan.nextInt(), scan.nextInt());
-        Coordinates cur = new Coordinates(start), aim = start;
-        int t = 0, stepsOnSF = 1;
+        int xS = scan.nextInt(), yS = scan.nextInt();
+        int xF = scan.nextInt(), yF = scan.nextInt();
+        int xK = xS, yK = yS;
         List<Coordinates> steps = new ArrayList<>();
 
-        while (stepsOnSF < 2) {
-            int quarter = getQuarter(aim, cur);
-
-            if (!steps.contains(new Coordinates(cur.x + 1, cur.y))) {
-                cur.x += 1;
-            } else if (!steps.contains(new Coordinates(cur.x, cur.y + 1))) {
-                cur.y += 1;
+        if (xF - xS == 0) {
+            for (int y = yS; y <= yF; y++) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
             }
 
-            steps.add(new Coordinates(cur));
-            t++;
-            if (cur.equals(start) && cur.equals(finish)) {
-                stepsOnSF++;
-                if (aim.equals(start)) aim = finish;
-                else aim = start;
+            xK++;
+            steps.add(new Coordinates(xK, yK));
+            for (int y = yF - 1; y >= yS; y--) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
             }
-            outputMap(start, finish, cur, steps);
+            xK--;
+            steps.add(new Coordinates(xK, yK));
+
+            xK--;
+            steps.add(new Coordinates(xK, yK));
+            for (int y = yS; y <= yF; y++) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
+            }
+            xK++;
+            steps.add(new Coordinates(xK, yK));
+
+            yK++;
+            steps.add(new Coordinates(xK, yK));
+            xK++;
+            steps.add(new Coordinates(xK, yK));
+            xK++;
+            steps.add(new Coordinates(xK, yK));
+            for (int y = yF; y >= yS - 1; y--) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
+            }
+            xK--;
+            steps.add(new Coordinates(xK, yK));
+            xK--;
+            steps.add(new Coordinates(xK, yK));
+            yK++;
+            steps.add(new Coordinates(xK, yK));
+        } else if (yF - yS == 0) {
+            for (int x = xS; x <= xF; x++) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+
+            yK++;
+            steps.add(new Coordinates(xK, yK));
+            for (int x = xF - 1; x >= xS; x--) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+            yK--;
+            steps.add(new Coordinates(xK, yK));
+
+            yK--;
+            steps.add(new Coordinates(xK, yK));
+            for (int x = xS; x <= xF; x++) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+            yK++;
+            steps.add(new Coordinates(xK, yK));
+
+            xK++;
+            steps.add(new Coordinates(xK, yK));
+            yK++;
+            steps.add(new Coordinates(xK, yK));
+            yK++;
+            steps.add(new Coordinates(xK, yK));
+            for (int x = xF; x >= xS - 1; x--) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+            yK--;
+            steps.add(new Coordinates(xK, yK));
+            yK--;
+            steps.add(new Coordinates(xK, yK));
+            xK++;
+            steps.add(new Coordinates(xK, yK));
+        } else {
+            for (int x = xS; x <= xF; x++) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+            for (int y = yS + 1; y <= yF; y++) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
+            }
+
+            for (int x = xF - 1; x >= xS; x--) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+            for (int y = yF - 1; y >= yS; y--) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
+            }
+
+            yK--;
+            steps.add(new Coordinates(xK, yK));
+            for (int x = xS + 1; x <= xF + 1; x++) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+            for (int y = yS; y <= yF; y++) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
+            }
+            xK--;
+            steps.add(new Coordinates(xK, yK));
+
+            yK++;
+            steps.add(new Coordinates(xK, yK));
+            for (int x = xF - 1; x >= xS - 1; x--) {
+                xK = x;
+                steps.add(new Coordinates(xK, yK));
+            }
+            for (int y = yF; y >= yS; y--) {
+                yK = y;
+                steps.add(new Coordinates(xK, yK));
+            }
+            xK++;
+            steps.add(new Coordinates(xK, yK));
         }
 
-        steps.add(start);
-        output(t, steps);
+        System.out.println(steps);
+
+        output(steps);
     }
+    /*
+2 2
+7 6
 
-    private static int getQuarter(Coordinates center, Coordinates point) {
-        int deltaX = point.x - center.x, deltaY = point.y - center.y;
+2 2
+3 3
 
-        if (deltaX >= 0 && deltaY >= 0) return 1;
-        else if (deltaX < 0 && deltaY >= 0) return 2;
-        else if (deltaX < 0) return 3;
-        else return 4;
-    }
+2 2
+8 2
 
-    private static void outputMap(Coordinates start, Coordinates finish, Coordinates cur, List<Coordinates> steps) {
-        System.out.println();
-        for (int y = start.y; y <= finish.y; y++) {
-            for (int x = start.x; x <= finish.x; x++) {
-                Coordinates temp = new Coordinates(x, y);
+3 3
+3 6
+     */
 
-                if (temp.equals(cur)) {
-                    System.out.print("K");
-                } else if (temp.equals(start)) {
-                    System.out.print("S");
-                } else if (temp.equals(finish)) {
-                    System.out.print("F");
-                } else if (steps.contains(temp)) {
-                    System.out.print(1);
-                } else {
-                    System.out.print(0);
-                }
-                System.out.print("\t");
-            }
-            System.out.println();
-        }
-        System.out.println("//--------------------------");
-    }
-
-
-    private static void output(int t, List<Coordinates> steps) {
-        System.out.println(t);
-        steps.forEach(c -> System.out.println("\n" + c.x + " " + c.y));
+    private static void output(List<Coordinates> steps) {
+        System.out.print(steps.size());
+        steps.forEach(c -> System.out.print("\n" + c.x + " " + c.y));
     }
 
     private static class Coordinates {
 
-        private int x, y;
+        private final int x, y;
 
         private Coordinates(int x, int y) {
             this.x = x;
             this.y = y;
         }
 
-        private Coordinates(Coordinates other) {
-            this.x = other.x;
-            this.y = other.y;
+        @Override
+        public String toString() {
+            return "(" + x + "; " + y + ")";
         }
 
         @Override
