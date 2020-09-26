@@ -10,12 +10,16 @@ public class ProblemD {
         int k = scan.nextInt(), b = scan.nextInt();
         int c = scan.nextInt();
 
-        for (int time = 1; time <= t; time++) {
-            int aTime = time * a;
+        int min = c;
 
-            if ((t - aTime) % k == 0) {
-                int bTime = (t - aTime) / k * b;
+        for (int time = 1; time <= t; time++) {
+            int money = (int) Math.ceil((float) (t - time) / k) * b + time * a;
+
+            if (min > money) {
+                min = money;
             }
         }
+
+        System.out.println(min);
     }
 }
