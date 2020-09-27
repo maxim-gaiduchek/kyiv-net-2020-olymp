@@ -29,7 +29,7 @@ public class ProblemB {
 
             xK--;
             steps.add(new Coordinates(xK, yK));
-            for (int y = yS; y <= yF; y++) {
+            for (int y = yS + 1; y <= yF; y++) {
                 yK = y;
                 steps.add(new Coordinates(xK, yK));
             }
@@ -69,7 +69,7 @@ public class ProblemB {
 
             yK--;
             steps.add(new Coordinates(xK, yK));
-            for (int x = xS; x <= xF; x++) {
+            for (int x = xS + 1; x <= xF; x++) {
                 xK = x;
                 steps.add(new Coordinates(xK, yK));
             }
@@ -138,7 +138,7 @@ public class ProblemB {
             steps.add(new Coordinates(xK, yK));
         }
 
-        System.out.println(steps);
+        //System.out.println(steps);
 
         output(steps);
     }
