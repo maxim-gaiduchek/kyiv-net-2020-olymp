@@ -6,7 +6,8 @@ public class ProblemC {
         Scanner scan = new Scanner(System.in);
         Map<Integer, Integer> counters = new HashMap<>();
 
-        for (int i = 0; i < scan.nextInt(); i++) {
+        int n = scan.nextInt();
+        for (int i = 0; i < n; i++) {
             int apple = scan.nextInt();
 
             if (counters.containsKey(apple)) {
