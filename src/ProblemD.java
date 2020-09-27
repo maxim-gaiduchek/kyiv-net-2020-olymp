@@ -12,7 +12,7 @@ public class ProblemD {
 
         int min = c;
 
-        for (int time = 1; time <= t; time++) {
+        for (int time = 0; time <= t; time++) {
             int money = (int) Math.ceil((float) (t - time) / k) * b + time * a;
 
             if (min > money) {
