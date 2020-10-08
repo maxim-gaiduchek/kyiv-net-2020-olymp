@@ -1,3 +1,5 @@
+package tour_1;
+
 import java.util.*;
 
 public class ProblemC {
