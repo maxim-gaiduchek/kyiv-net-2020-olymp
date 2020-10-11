@@ -16,16 +16,14 @@ public class ProblemC {
             }
         }
 
-        int odds = (int) counters.entrySet().stream().filter(entry -> entry.getValue() % 2 == 1).count();
+        int palindromes = (int) counters.values().stream().filter(value -> value % 2 == 1).count();
 
-        if (odds <= 1) {
+        if (palindromes <= 1) {
             System.out.println(chars.length);
-            System.exit(2);
+        } else {
+            int pairs = counters.values().stream().mapToInt(Integer::intValue).sum() - palindromes;
+
+            System.out.println(pairs / (palindromes * 2) * 2 + 1);
         }
-
-        int pairs = counters.values().stream().mapToInt(Integer::intValue).sum() - odds;
-
-        System.out.println();
-        System.out.println((int) Math.floor((double) pairs / odds) - pairs % odds + 1);
     }
 }
