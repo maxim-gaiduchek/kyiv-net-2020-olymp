@@ -21,7 +21,7 @@ public class ProblemC {
         if (palindromes <= 1) {
             System.out.println(chars.length);
         } else {
-            int pairs = counters.values().stream().mapToInt(Integer::intValue).sum() - palindromes;
+            int pairs = chars.length - palindromes;
 
             System.out.println(pairs / (palindromes * 2) * 2 + 1);
         }
