@@ -12,6 +12,7 @@ public class ProblemD {
     public static void main(String[] args) throws IOException {
         long start = System.currentTimeMillis();
         Scanner scan = new Scanner(new FileInputStream("t.txt"));
+        //Scanner scan = new Scanner(System.in);
 
         int n = scan.nextInt(), m = scan.nextInt();
         List<Task> tasks = new ArrayList<>();
@@ -37,8 +38,8 @@ public class ProblemD {
 
             //System.out.println(day + " -> " + task);
             if (task != null) {
-                tasks.remove(task);
                 money += task.money;
+                tasks.remove(task);
             }
             if (tasks.isEmpty()) break;
         }
