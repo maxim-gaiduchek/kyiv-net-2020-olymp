@@ -31,7 +31,7 @@ public class ProblemE {
             int zigzagLength = size - rising - reducing + 2;
             int risingArrInZig = zigzagLength / 2 + 1;
             int reducingArrInZig = zigzagLength - risingArrInZig + 2;
-            //System.out.println(zigzagLength + " " + risingArrInZig + " " + reducingArrInZig);
+            System.out.println(zigzagLength + " " + risingArrInZig + " " + reducingArrInZig);
 
             if (risingArrInZig > rising || reducingArrInZig > reducing) {
                 System.out.print(-1);
